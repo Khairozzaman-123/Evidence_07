@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Evidence_01.Models.Player>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Player List</h2>
+        <div class="text-right">
+            @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary" })
+        </div>
+        <table class="table table-bordered table-striped table-hover" style="margin-top:5px;">
+            <thead>
+                <tr>
+                    <th>Player Name</th>
+                    <th>Sports Name</th>
+                    <th>Join Date</th>
+                    <th>Grade</th>
+                    <th>Picture</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.PlayerName</td>
+                        <td>@item.Sports.SportsName</td>
+                        <td>@item.JoinDate.ToShortDateString()</td>
+                        <td>@item.Grade</td>
+                        <td>
+                            <img src="@Url.Content(item.PicturePath)" width="40" />
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PlayerId }, new { @class = "btn btn-primary btn-sm" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PlayerId }, new { @class = "btn btn-danger btn-sm" })
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
